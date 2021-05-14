@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Admin </title>
+    <link rel="shortcut icon" href="logo.png">
+
+    <!-- Load font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous">
+
+    <!-- Chart JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+            
+            
+            #myTable {
+              border-collapse: collapse;
+              width: 100%;
+              border: 1px solid #ddd;
+              font-size: 18px;
+            }
+            
+            #myTable th, #myTable td {
+              text-align: center;
+              padding: 12px;
+            }
+            
+            #myTable tr {
+              border-bottom: 1px solid #ddd;
+            }
+            
+            #myTable tr.header, #myTable tr:hover {
+              background-color: #f1f1f1;
+            }
+            </style>
+            
+<style>body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ 
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+ 
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+ 
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+ 
+.topnav a.active {
+    background-color: #4CAF50;
+    color: rgb(0, 0, 0);
+}
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header h1{
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    ;
+}
+
+
+a {
+    text-decoration: none;
+    color: rgb(97, 7, 7);
+}
+
+
+
+
+/* ==================== table ====================== */
+.table-outline {
+    width: 100%;
+    border: 1px solid #23282c;
+}
+
+/* phần chứa header (th) */
+.table-header {
+    width: 100%;
+}
+.table-content {
+    width: 100%;
+}
+
+
+.table-header th {
+    color: #e4e7ea;
+    background-color: #3e464d;
+    border-color: #23282c;
+}
+
+.table-content th {
+    color: #e4e7ea;
+    background-color: #3e464d;
+    border-color: #23282c;
+}
+
+.table-header th {
+    cursor: pointer;
+}
+
+.table-content th {
+    cursor: pointer;
+}
+
+.table-header th i {
+    /* Ẩn icon sort */
+    transform: scale(0);
+    transition-duration: .2s;
+}
+
+.table-content th i {
+    /* Ẩn icon sort */
+    transform: scale(0);
+    transition-duration: .2s;
+}
+
+.table-header th:hover i {
+    transform: scale(1)
+}
+
+.table-content th:hover i {
+    transform: scale(1)
+}
+
+.table-header th,
+.table-content td {
+    padding: .75rem;
+    text-align: center;
+    vertical-align: top;
+    border-top: 1px solid #23282c;
+}
+
+/* phần chứa nội dung  */
+.table-content {
+    min-height: 200px;
+    max-height: 550px;
+    overflow: auto;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.table-content tr:nth-of-type(even) {
+    background-color: #ffffff;
+}
+
+.table-content td {
+    position: relative;
+    color: #ffffff;
+}
+
+/* Link chi tiet san pham */
+.table-content td a {
+    display: block;
+    color: #e4e7ea;
+}
+
+.table-content td a:hover {
+    text-decoration: underline;
+}
+
+/* Hành động */
+.table-content td i {
+    padding: .3em;
+    cursor: pointer;
+}
+
+.table-content td i.fa-wrench:hover {
+    color: #63c2de
+}
+
+.table-content td i.fa-trash:hover {
+    color: #f86c6b
+}
+
+.table-content td i.fa-check:hover {
+    color: #5ce457d8
+}
+
+.table-content td i.fa-remove:hover {
+    color: #f86c6b
+}
+
+
+ 
+#id001 {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+  }
+  
+  #id001 th, #id001 td {
+    text-align: center;
+    padding: 12px;
+  }
+  
+  #id001 tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #id001 tr.header, #id001 tr:hover {
+    background-color: #f1f1f1;
+  }
+
+
+  
+/*  phần footer table  */
+.table-footer {
+    overflow: hidden;
+    background-color: black;
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #23282c;
+}
+
+.table-footer input,
+.table-footer button,
+.table-footer select {
+    padding: 5px 10px;
+    border: 3px solid transparent;
+    background-color: #cccece;
+}
+
+/* Nút bấm ở footer */
+.table-footer button {
+    cursor: pointer;
+    background-color: #cccece;
+    color: #e4e7ea;
+    transition-duration: .2s;
+}
+
+.table-footer button:hover {
+    background-color: #7a879486;
+    color: black;
+    border-color: #73818f;
+}
+
+/* ================== Những table thêm sửa sẽ có dạng overlay -> mặc định ẩn  ====================== */
+
+.main>div {
+    /* Mặc định ẩn mọi thứ trong main */
+    display: none;
+}
+
+/* =================== Các class xử lý ảnh ================ */
+/* Ảnh ẩn trong td */
+.hideImg td img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    border-radius: 5px;
+    transition-duration: .1s;
+    z-index: 2;
+}
+
+.hideImg td:hover img {
+    height: 150px;
+}
+
+/* Ảnh đại diện */
+.hinhDaiDien {
+    max-height: 100px;
+    max-width: 100px;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 14;
+    transition: .2s ease;
+    transform: scale(0);
+    background-color: #8d8d8dd8;
+}
+
+.overlayTable {
+    margin: 50px auto;
+    width: auto;
+    background-color: #ffffff;
+}
+
+.overlayTable td:first-child {
+    text-align: right;
+}
+
+.overlayTable input {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e7e7e7;
+}
+
+.overlayTable input[type="file"] {
+    background-color: transparent;
+}
+
+.close {
+    /* nút tắt form */
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    font-size: 3rem;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    text-align: center;
+    color: #aaa;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.close:hover {
+    color: #fff;
+    background-color: #f33;
+    border-radius: 50%;
+}
+
+            
+#id001 {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+  }
+  
+  #id001 th, #id001 td {
+    text-align: center;
+    padding: 12px;
+  }
+  
+  #id001 tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #id001 tr.header, #id001 tr:hover {
+    background-color: #f1f1f1;
+  }
+/* ======================= id =================== */
+
+/* Div Tìm theo ngày */
+.timTheoNgay {
+    float: left;
+    margin-right: 50px;
+    padding-right: 10px;
+    color: #e4e7ea;
+    border-right: 2px solid #777;
+}
+
+/* ========================== Thong ke ========================= */
+.thongke .canvasContainer {
+    display: inline-block;
+    width: 49%;
+    margin: 50px 0;
+}
+
+.flexContain {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+/* ========================= tooltip from w3school  ====================== */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 50px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 21;
+    bottom: -150%;
+    left: 50%;
+    margin-left: -25px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ========= ScrollBar ============ */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+#id{
+    font-size: 30px;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h2></h2>
+    </header>
+    
+
+        <div class="topnav" style="padding-left:20px">
+            
+                <!-- <a href="index.html">Trang chủ</a>-->
+                <a href="admin.html"><i class="fa fa-home"></i> Home</a>
+                <!--<a class="active"   href="admin.html">Home</a>-->
+                <!--<a href="sanpham.html">Sản phẩm</a>-->
+                <a  href="sanpham2.html"><i class="fa fa-th-large"></i> Sản Phẩm</a>
+                <!--<a href="donhang.html">Đơn hàng</a>-->
+                <a class="nav-link active" href="donhang.html"><i class="fa fa-file-text-o"></i> Đơn Hàng</a>
+                <!--<a href="khachhang.html">Khách hàng</a>-->
+                <a href="khachhang.html"><i class="fa fa-address-book-o"></i> Khách Hàng</a>
+                <!--<a href="thongke.html">Thống kê</a>-->
+                <a href="thongke.html"><i class="fa fa-bar-chart-o"></i> Thống Kê</a>
+               
+                <a  href="login.html"  style="float:right"  ><i class="fa fa-arrow-left"></i> Đăng Xuất</a> 
+                <a class="" href="#about"  style="float:right">Admin<i  class="fa fa-users" style="color: yellow;"></i></a>   
+            </div>
+        
+            
+    
+
+        
+        <!-- Đơn Hàng -->
+      <!--  <div class="donhang">
+            <table class="table-header">
+                <tr>
+                     Theo độ rộng của table content
+                    <th title="Sắp xếp" style="width: 5%" onclick="sortDonHangTable('stt')">Stt <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" style="width: 10%" onclick="sortDonHangTable('madon')">Mã đơn <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" style="width: 10%" onclick="sortDonHangTable('khach')">Khách <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" style="width: 20%" onclick="sortDonHangTable('sanpham')">Sản phẩm <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" style="width: 15%" onclick="sortDonHangTable('tongtien')">Tổng tiền <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" style="width: 10%" onclick="sortDonHangTable('ngaygio')">Ngày giờ <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" style="width: 10%" onclick="sortDonHangTable('trangthai')">Trạng thái <i class="fa fa-sort"></i></th>
+                    <th style="width: 10%">Hành động</th>
+                </tr>
+            </table>
+          -->   
+            
+          <table id="id001">
+                <tr class="table-header">
+                        <!-- Theo độ rộng của table content -->
+                        <th title="Sắp xếp" style="width: 5%" >Stt </th>
+                        <th title="Sắp xếp" style="width: 10%" >Mã đơn </th>
+                        <th title="Sắp xếp" style="width: 10%" >Khách </th>
+                        <th title="Sắp xếp" style="width: 20%" >Sản phẩm </th>
+                        <th title="Sắp xếp" style="width: 15%" >Tổng tiền </th>
+                        <th title="Sắp xếp" style="width: 10%" >Ngày giờ </th>
+                        <th title="Sắp xếp" style="width: 10%" >Trạng thái </th>
+                        <th style="width: 10%">Ghi chú</th>
+                </tr>
+                
+                            <tr>
+                              <td>1</td>
+                              <td>SK12019</td>
+                              
+                              <td>AlfredsFutt</td>
+                              <td>Seiko 55</td>
+                              <td >5.000.000đ</td>
+                              <td>11/19/2019</td>
+                              <td>Đã giao <input type="checkbox" id="myCheck" ></td>
+                              <td><input type="text" id="ghichu"></td>
+                              
+                            <tr>
+                              <td>2</td>
+                              <td>CS12019</td>
+                              <td>Taylor</td>
+                              <td>CITIZEN AW</td>
+                              <td>4.550.000đ</td>
+                              <td>11/18/2019</td>
+                              <td >Đã giao <input type="checkbox" id="myCheck" ></td>
+                              <td><input type="text" id="ghichu"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>CKS32019</td>
+                                <td>Jason</td>
+                                <td>Casio G-shockshock</td>
+                                <td>3.549.000đ</td>
+                                <td>11/18/2019</td>
+                                <td >Đã giao <input type="checkbox" id="myCheck" checked></td>
+                                <td><input type="text" id="ghichu"></td>
+                              </tr>
+                              <tr>
+                                <td>4</td>
+                                <td>CZS6219</td>
+                                <td>Tommy</td>
+                                <td>SEIKO SSA</td>
+                                <td>2.450.000đ</td>
+                                <td>11/18/2019</td>
+                                <td >Đã giao <input type="checkbox" id="myCheck" checked></td>
+                                <td><input type="text" id="ghichu"></td>
+                              </tr>
+                              <tr>
+                                <td>5</td>
+                                <td>CS62019</td>
+                                <td>Christian</td>
+                                <td>ORIENT SELSEL</td>
+                                <td>13.549.000đ </td>
+                                <td>11/18/2019</td>
+                                <td >Đã giao <input type="checkbox" id="myCheck" checked></td>
+                                <td><input type="text" id="ghichu"></td>
+                              </tr>
+                              <tr>
+                                    <td>6</td>
+                                    <td>CS72019</td>
+                                    <td>Paul</td>
+                                    <td>G-shockshock</td>
+                                    <td>5.329.000đ </td>
+                                    <td>12/1/2019</td>
+                                    <td >Đã giao <input type="checkbox" id="myCheck" checked></td>
+                                    <td><input type="text" id="ghichu"></td>
+                                  </tr>
+                                  <tr>
+                                        <td>7</td>
+                                        <td>CZ119</td>
+                                        <td>Raphael</td>
+                                        <td>SEIKO SSA</td>
+                                        <td>12.120.000đ </td>
+                                        <td>122/1/2019</td>
+                                        <td >Đã giao <input type="checkbox" id="myCheck" checked></td>
+                                        <td><input type="text" id="ghichu"></td>
+                                      </tr>
+                                      <tr>
+                                            <td>9</td>
+                                            <td>ORI219</td>
+                                            <td>PAULO</td>
+                                            <td>ORIENT SELSEL</td>
+                                            <td>9.149.000đ </td>
+                                            <td>12/1/2019</td>
+                                            <td >Đã giao <input type="checkbox" id="myCheck" checked></td>
+                                            <td><input type="text" id="ghichu"></td>
+                                          </tr>
+                        
+                            </table>
+        
+
+            <div class="table-footer">
+                <div class="timTheoNgay">
+                    Từ ngày: <input type="date" id="fromDate">
+                    Đến ngày: <input type="date" id="toDate">
+
+                    <button onclick="locDonHangTheoKhoangNgay()"><i class="fa fa-search"></i> Tìm</button>
+                </div>
+
+                <select name="kieuTimDonHang">
+                    <option value="ma">Tìm theo mã đơn</option>
+                    <option value="khachhang">Tìm theo tên khách hàng</option>
+                    <option value="trangThai">Tìm theo trạng thái</option>
+                </select>
+                <input type="text" placeholder="Tìm kiếm..." onkeyup="timKiemDonHang(this)">
+            </div>
+
+        </div> <!-- // don hang -->
+        <!-- <script>
+    
+            var index, table = document.getElementById('id001');
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                table.rows[i].cells[7].onclick = function()
+                {
+                    var c = confirm("Bạn có chắc chắn muốn xóa???!!!");
+                    if(c === true)
+                    {
+                        index = this.parentElement.rowIndex;
+                        table.deleteRow(index);
+                    }
+                    
+                    //console.log(index);
+                };
+                
+            }
+    
+        </script> -->
+        
+    
+
+
+
+        </div>
+        </body>
+        </html>
