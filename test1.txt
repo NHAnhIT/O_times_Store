@@ -1,2 +1,4 @@
 test1.txt
-hghd
+
+a=1
+
